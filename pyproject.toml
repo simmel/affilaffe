@@ -8,6 +8,7 @@ authors = ["Simon Lundström <github-commits@soy.se>"]
 python = "^3.7"
 python-ldap = "^3.2"
 gssapi = "^1.6"
+ldap3 = "^2.6"
 
 [tool.poetry.dev-dependencies]
 pytest = "^3.0"
