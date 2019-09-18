@@ -15,8 +15,14 @@ def python_ldap():
     result = l.search_s(base="",
                         scope=ldap.SCOPE_SUBTREE,
                         filterstr="(uid=simlu)",
-                        attrlist=["eduPersonAffiliation"])
-    print(result)
+                        attrlist=["eduPersonAffiliation", "displayName"])
+
+    for _dn, entry in result:
+        for attribute in entry:
+            print("attribute: {} is: {!r}".format(
+                attribute,
+                # We need to decode the bytes to UTF-8 apparently
+                [a.decode("utf-8") for a in entry[attribute]]))
 
 
 def ldaptre():
@@ -32,8 +38,11 @@ def ldaptre():
     conn.search(search_base='',
                 search_scope=ldap3.SUBTREE,
                 search_filter='(uid=simlu)',
-                attributes=['eduPersonAffiliation'])
-    print(conn.entries)
+                attributes=['eduPersonAffiliation', 'displayName'])
+    for entry in conn.entries:
+        for attribute in entry.entry_attributes:
+            print("attribute: {} is: {!r}".format(attribute,
+                                                  entry[attribute].values))
 
 
 def main():
