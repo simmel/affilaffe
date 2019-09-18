@@ -3,7 +3,6 @@
 
 import ldap
 import ldap3
-import ldap.sasl
 
 
 def python_ldap():
