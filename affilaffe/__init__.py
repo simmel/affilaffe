@@ -27,9 +27,8 @@ def python_ldap():
 
 def ldaptre():
     print("ldap3")
-    server = ldap3.Server('ldaps://ldap.su.se', get_info=ldap3.ALL)
     conn = ldap3.Connection(
-        server,
+        server='ldaps://ldap.su.se',
         auto_bind=True,
         authentication=ldap3.SASL,
         sasl_mechanism=ldap3.GSSAPI,
