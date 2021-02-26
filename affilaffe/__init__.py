@@ -3,6 +3,7 @@
 
 import ldap
 import ldap3
+import ssl
 
 
 def python_ldap():
@@ -28,7 +29,12 @@ def python_ldap():
 def ldaptre():
     print("ldap3")
     conn = ldap3.Connection(
-        server='ldaps://ldap.su.se',
+        server=ldap3.Server('ldap.su.se',
+            use_ssl=True,
+            tls=ldap3.Tls(
+                validate=ssl.CERT_REQUIRED,
+                )
+            ),
         auto_bind=True,
         authentication=ldap3.SASL,
         sasl_mechanism=ldap3.GSSAPI,
